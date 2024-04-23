@@ -3,12 +3,13 @@ using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyBookWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -31,7 +32,7 @@ namespace BulkyBookWeb.Controllers
             {
                 ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
             }
-          
+
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(objCat);
